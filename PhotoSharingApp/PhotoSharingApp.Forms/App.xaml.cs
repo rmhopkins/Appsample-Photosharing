@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Practices.ServiceLocation;
+using Xamarin.Forms;
 
 namespace PhotoSharingApp.Forms
 {
@@ -8,7 +10,26 @@ namespace PhotoSharingApp.Forms
         {
             InitializeComponent();
 
-            MainPage = new PhotoSharingApp_FormsPage();
+            // Setup IoC Container for Dependeny Injection
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Reset();
+
+            // Register Dependencies
+            //SimpleIoc.Default.Register<IFileSystemService, FileSystemService>();
+
+            // Setup App Container
+            var navigationPage = new NavigationPage();
+            navigationPage.BarBackgroundColor = (Color)Resources["AccentColor"];
+            navigationPage.BarTextColor = Color.Black;
+
+            var appShell = new AppShell();
+            appShell.Children.Add(new CategoriesPage()); // Home
+            appShell.Children.Add(new CameraPage()); // Upload
+            appShell.Children.Add(new LeaderboardsPage()); // Leaderboards
+            appShell.Children.Add(new ProfilePage()); // My profile
+
+            navigationPage.PushAsync(appShell);
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()
