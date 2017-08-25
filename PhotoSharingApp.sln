@@ -10,9 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSharingApp.Portable", "PhotoSharingApp\PhotoSharingApp.Portable\PhotoSharingApp.Portable.csproj", "{F2BE2125-5344-4F5C-BF06-87E0455C5AF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSharingApp.AppService", "PhotoSharingApp\PhotoSharingApp.AppService\PhotoSharingApp.AppService.csproj", "{209FA716-A7AD-4095-BD70-C8710FC66FA7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F2BE2125-5344-4F5C-BF06-87E0455C5AF9} = {F2BE2125-5344-4F5C-BF06-87E0455C5AF9}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSharingApp.AppService.Tests", "PhotoSharingApp\PhotoSharingApp.AppService.Tests\PhotoSharingApp.AppService.Tests.csproj", "{E842C38E-4477-4DED-9784-D8B9F378D94D}"
 	ProjectSection(ProjectDependencies) = postProject

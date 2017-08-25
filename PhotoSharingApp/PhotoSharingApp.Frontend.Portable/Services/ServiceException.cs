@@ -22,27 +22,26 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using System;
 
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.Services
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The exception that is thrown when there is an issue getting data from
+    /// or pushing data to the service.
     /// </summary>
-    public static class CategoryExtensions
+    public class ServiceException : Exception
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public ServiceException()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+        }
+
+        public ServiceException(string message) : base(message)
+        {
+        }
+
+        public ServiceException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }

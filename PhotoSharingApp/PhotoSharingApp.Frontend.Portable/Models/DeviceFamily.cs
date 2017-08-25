@@ -22,27 +22,15 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
-
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Specifies the device family.
     /// </summary>
-    public static class CategoryExtensions
+    public enum DeviceFamily
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        Desktop,
+        Mobile,
+        Other
     }
 }

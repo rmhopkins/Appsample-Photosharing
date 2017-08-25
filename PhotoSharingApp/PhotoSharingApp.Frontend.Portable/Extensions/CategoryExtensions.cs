@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using PhotoSharingApp.Frontend.Portable.Models;
 
 namespace PhotoSharingApp.Frontend.Portable.Extensions
 {

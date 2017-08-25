@@ -29,11 +29,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
+using PhotoSharingApp.Frontend.Portable.Models;
 using PhotoSharingApp.Portable.DataContracts;
-using PhotoSharingApp.Universal.Extensions;
-using PhotoSharingApp.Universal.Models;
+using PhotoSharingApp.Frontend.Portable.Extensions;
 
-namespace PhotoSharingApp.Universal.Services
+namespace PhotoSharingApp.Frontend.Portable.Services
 {
     /// <summary>
     /// This is a dummy service implementation that returns static
@@ -513,7 +513,7 @@ namespace PhotoSharingApp.Universal.Services
                         HighResolutionUrl = thumb.ImageUrl.Replace("_tn", ""),
                         StandardUrl = thumb.ImageUrl.Replace("_tn", ""),
                         CreatedAt = DateTime.Now.AddMinutes(createdAtMinutes -= 55),
-                        User = users[userIndex++%users.Count],
+                        User = users[userIndex++ % users.Count],
                         GoldCount = _random.Next(10),
                         NumberOfAnnotations = 2,
                         CategoryId = c.Id,
@@ -696,7 +696,7 @@ namespace PhotoSharingApp.Universal.Services
         /// </summary>
         public Task RestoreSignInStatusAsync()
         {
-            return Task.CompletedTask;
+            return null; //Task.CompletedTask;
         }
 
         /// <summary>
@@ -705,7 +705,7 @@ namespace PhotoSharingApp.Universal.Services
         /// <param name="provider">The provider.</param>
         public Task SignInAsync(MobileServiceAuthenticationProvider provider)
         {
-            return Task.CompletedTask;
+            return null; //Task.CompletedTask;
         }
 
         /// <summary>
@@ -715,7 +715,7 @@ namespace PhotoSharingApp.Universal.Services
         {
             AppEnvironment.Instance.CurrentUser = null;
 
-            return Task.CompletedTask;
+            return null; //Task.CompletedTask;
         }
 
         /// <summary>

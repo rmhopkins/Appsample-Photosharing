@@ -22,27 +22,27 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using System.ComponentModel;
 
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.ComponentModel
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Base class that implements <see cref="INotifyPropertyChanged" />.
     /// </summary>
-    public static class CategoryExtensions
+    public class ObservableObjectBase : INotifyPropertyChanged
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Notifies that the property has changed.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="propertyName">Name of the property.</param>
+        protected void NotifyPropertyChanged(string propertyName)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        /// <summary>
+        /// The event that is fired when a property has changed.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

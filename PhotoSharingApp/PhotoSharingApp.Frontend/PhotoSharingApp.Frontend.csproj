@@ -35,7 +35,6 @@
     <Compile Include="ComponentModel\ObservableObjectBase.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\Annotation.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\AppEnvironment.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="Models\Category.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\CategoryMatchedException.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\CategoryMatchFinder.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\CategoryPreview.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
@@ -48,7 +47,6 @@
     <Compile Include="Models\InstructionItem.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\Leaderboard.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\LeaderboardEntry.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="Models\Photo.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\PhotoStream.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\PhotoStreamLayoutType.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="Models\PhotoThumbnail.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />

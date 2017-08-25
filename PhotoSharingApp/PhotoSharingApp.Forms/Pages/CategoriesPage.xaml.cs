@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using GalaSoft.MvvmLight.Ioc;
+using PhotoSharingApp.Frontend.Portable.ViewModels;
 using Xamarin.Forms;
 
 namespace PhotoSharingApp.Forms
@@ -10,6 +11,7 @@ namespace PhotoSharingApp.Forms
         public CategoriesPage()
         {
             InitializeComponent();
+            BindingContext = SimpleIoc.Default.GetInstance<CategoriesViewModel>();
         }
     }
 }

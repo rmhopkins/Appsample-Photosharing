@@ -3,9 +3,91 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhotoSharingApp.Forms.CategoriesPage"
-    Title="Home"
-    Icon="home.png">
+    Title="Home">
+
+    <!-- Icon -->
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="home.png"/>
+        </OnPlatform>
+    </ContentPage.Icon>
 
 	<ContentPage.Content>
+        <ListView
+            IsPullToRefreshEnabled="true"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <ListView.Header>
+                <Grid
+                    BackgroundColor="{StaticResource SubtleColor}"
+                    Padding="20">
+
+
+                </Grid>
+            </ListView.Header>
+
+            <ListView.Footer>
+                <Grid
+                    BackgroundColor="{StaticResource SubtleColor}"
+                    Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Frame                    
+                        HasShadow="false"
+                        CornerRadius="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Text="Gold balance: 50" />
+
+                            <StackLayout
+                                Grid.Row="1"
+                                Orientation="Horizontal">
+                                <Button
+                                    HorizontalOptions="Start"
+                                    Text="Buy gold" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <Frame  
+                        Grid.Row="1"
+                        HasShadow="false"
+                        CornerRadius="0"
+                        Margin="0,20,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Text="Upload a photo now to get some Gold" />
+
+                            <StackLayout
+                                Grid.Row="1"
+                                Orientation="Horizontal">
+                                <Button
+                                    HorizontalOptions="Start"
+                                    Text="Take photo" />
+
+                                <Button
+                                    HorizontalOptions="Start"
+                                    Text="Browse pictures" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </ListView.Footer>
+        </ListView>
 	</ContentPage.Content>
 </ContentPage>

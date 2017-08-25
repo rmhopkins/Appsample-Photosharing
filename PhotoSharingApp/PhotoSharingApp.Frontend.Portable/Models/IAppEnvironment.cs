@@ -22,27 +22,16 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
-
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Defines the app environment
     /// </summary>
-    public static class CategoryExtensions
+    public interface IAppEnvironment
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Stores the current user that is logged in.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        User CurrentUser { get; set; }
     }
 }

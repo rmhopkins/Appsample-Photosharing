@@ -3,8 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhotoSharingApp.Forms.CameraPage"
-    Title="Upload"
-    Icon="camera.png">
+    Title="Upload">
+
+    <!-- Icon -->
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="camera.png"/>
+        </OnPlatform>
+    </ContentPage.Icon>
+    
 	<ContentPage.Content>
 	</ContentPage.Content>
 </ContentPage>

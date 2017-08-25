@@ -1,5 +1,4 @@
-﻿//-----------------------------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//  Copyright (c) Microsoft Corporation.  All rights reserved.
 // 
 //  The MIT License (MIT)
 // 
@@ -22,26 +21,26 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using PhotoSharingApp.Frontend.Portable.Models;
 
 namespace PhotoSharingApp.Frontend.Portable.Extensions
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Provides extension methods for the <see cref="CategoryPreview" /> class.
     /// </summary>
-    public static class CategoryExtensions
+    public static class CategoryPreviewExtensions
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Converts from <see cref="CategoryPreview" /> to <see cref="Category" />.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="categoryPreview">The category preview object.</param>
+        /// <returns>The category.</returns>
+        public static Category ToCategory(this CategoryPreview categoryPreview)
         {
-            return new CategoryPreview
+            return new Category
             {
-                Id = category.Id,
-                Name = category.Name
+                Id = categoryPreview.Id,
+                Name = categoryPreview.Name
             };
         }
     }

@@ -22,27 +22,23 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using System.Collections.Generic;
 
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Represents a stream of photos.
     /// </summary>
-    public static class CategoryExtensions
+    public class PhotoStream
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Gets or sets the cateogory identifier.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        public string CateogoryId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the photos.
+        /// </summary>
+        public IList<Photo> Photos { get; set; }
     }
 }

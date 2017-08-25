@@ -22,27 +22,34 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Portable.Models;
+using System.Collections.Generic;
+using PhotoSharingApp.Frontend.Portable.ComponentModel;
 
-namespace PhotoSharingApp.Frontend.Portable.Extensions
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Represents the current leaderboard standings
     /// </summary>
-    public static class CategoryExtensions
+    public class Leaderboard : ObservableObjectBase
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// The user entries for most gold given
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        public List<LeaderboardEntry<User>> MostGivingUsers { get; set; } = new List<LeaderboardEntry<User>>();
+
+        /// <summary>
+        /// The category entries for highest net worth
+        /// </summary>
+        public List<LeaderboardEntry<Category>> MostGoldCategories { get; set; } = new List<LeaderboardEntry<Category>>();
+
+        /// <summary>
+        /// The photo entries for highest net worth
+        /// </summary>
+        public List<LeaderboardEntry<Photo>> MostGoldPhotos { get; set; } = new List<LeaderboardEntry<Photo>>();
+
+        /// <summary>
+        /// The user entries for highest net worth
+        /// </summary>
+        public List<LeaderboardEntry<User>> MostGoldUsers { get; set; } = new List<LeaderboardEntry<User>>();
     }
 }

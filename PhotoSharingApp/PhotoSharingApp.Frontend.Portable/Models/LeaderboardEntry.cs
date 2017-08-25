@@ -22,69 +22,63 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using System;
-using PhotoSharingApp.Frontend.ComponentModel;
+using PhotoSharingApp.Frontend.Portable.ComponentModel;
 
-namespace PhotoSharingApp.Frontend.Models
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
-    /// Represents a category.
+    /// Represents the current leaderboard standings
     /// </summary>
-    public class Category : ObservableObjectBase
+    public class LeaderboardEntry<T> : ObservableObjectBase where T : class
     {
-        private string _id;
-        private string _name;
+        private T _model;
+        private long _rank;
+        private int _value;
 
         /// <summary>
-        /// Gets the data model validation result.
-        /// Returns true, if it contains one or more errors.
-        /// Otherwise, false.
+        /// The model that this entry is for
         /// </summary>
-        public bool HasErrors
+        public T Model
         {
-            get
-            {
-                // Globalization note: Yes, there's a literal string here, but it's coming from the model, and the view models
-                // both depend on this specific string being present, and remove this string from any data being displayed to the user.
-                // There's no need to localize it for the user's benefit.
-                return string.IsNullOrWhiteSpace(_name)
-                       || _name.Length < 2
-                       || _name.StartsWith("my", StringComparison.CurrentCultureIgnoreCase);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Id.
-        /// </summary>
-        public string Id
-        {
-            get { return _id; }
+            get { return _model; }
             set
             {
-                if (value != _id)
+                if (value != _model)
                 {
-                    _id = value;
-                    NotifyPropertyChanged(nameof(Id));
+                    _model = value;
+                    NotifyPropertyChanged(nameof(Model));
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// The leaderboard rank for this entry
         /// </summary>
-        public string Name
+        public long Rank
         {
-            get { return _name; }
+            get { return _rank; }
             set
             {
-                if (value != _name)
+                if (value != _rank)
                 {
-                    _name = value;
-                    NotifyPropertyChanged(nameof(Name));
+                    _rank = value;
+                    NotifyPropertyChanged(nameof(Rank));
+                }
+            }
+        }
 
-                    // The name has changed, so we need to update the
-                    // object's validation status.
-                    NotifyPropertyChanged(nameof(HasErrors));
+        /// <summary>
+        /// The entry value
+        /// </summary>
+        public int Value
+        {
+            get { return _value; }
+            set
+            {
+                if (_value != value)
+                {
+                    _value = value;
+                    NotifyPropertyChanged(nameof(Value));
                 }
             }
         }

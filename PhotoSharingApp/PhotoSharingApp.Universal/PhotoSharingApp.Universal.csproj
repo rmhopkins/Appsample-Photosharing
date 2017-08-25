@@ -191,7 +191,6 @@
     <Compile Include="ContractModelConverterExtensions\LeaderboardConverter.cs" />
     <Compile Include="ContractModelConverterExtensions\LeaderboardEntryConverter.cs" />
     <Compile Include="ContractModelConverterExtensions\PhotoConverter.cs" />
-    <Compile Include="Extensions\CategoryExtensions.cs" />
     <Compile Include="Extensions\CategoryPreviewExtensions.cs" />
     <Compile Include="Extensions\PhotoListExtensions.cs" />
     <Compile Include="ServiceEnvironments\ServiceEnvironment.cs" />
@@ -255,7 +254,6 @@
     <Compile Include="Serialization\SerializationHelper.cs" />
     <Compile Include="Services\AuthenticationHandler.cs" />
     <Compile Include="Services\AzureAppService.cs" />
-    <Compile Include="Services\PhotoDummyService.cs" />
     <Compile Include="Services\ServiceClient.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Storage\FilePickerHelper.cs" />
@@ -334,6 +332,7 @@
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\CategoryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

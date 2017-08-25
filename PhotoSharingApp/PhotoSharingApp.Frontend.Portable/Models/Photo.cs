@@ -26,9 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using PhotoSharingApp.Portable.DataContracts;
-using PhotoSharingApp.Frontend.ComponentModel;
+using PhotoSharingApp.Frontend.Portable.ComponentModel;
 
-namespace PhotoSharingApp.Frontend.Models
+namespace PhotoSharingApp.Frontend.Portable.Models
 {
     /// <summary>
     /// Represents a photo
@@ -50,15 +50,16 @@ namespace PhotoSharingApp.Frontend.Models
         {
             get
             {
+                return true;
                 // You can give gold without being signed-in as this triggers
                 // the sign-in UI.
-                if (AppEnvironment.Instance.CurrentUser == null)
-                {
-                    return true;
-                }
+                //if (AppEnvironment.Instance.CurrentUser == null)
+                //{
+                //    return true;
+                //}
 
-                // You can not give gold when you are the owner of the picture.
-                return !User.UserId.Equals(AppEnvironment.Instance.CurrentUser.UserId);
+                //// You can not give gold when you are the owner of the picture.
+                //return !User.UserId.Equals(AppEnvironment.Instance.CurrentUser.UserId);
             }
         }
 
@@ -142,10 +143,10 @@ namespace PhotoSharingApp.Frontend.Models
         {
             get
             {
-                if (AppEnvironment.Instance.IsMobileDeviceFamily)
-                {
-                    return StandardUrl;
-                }
+                //if (AppEnvironment.Instance.IsMobileDeviceFamily)
+                //{
+                //    return StandardUrl;
+                //}
 
                 return HighResolutionUrl;
             }
