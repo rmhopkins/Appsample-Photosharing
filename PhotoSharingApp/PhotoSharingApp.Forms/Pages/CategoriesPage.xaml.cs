@@ -8,10 +8,18 @@ namespace PhotoSharingApp.Forms
 {
     public partial class CategoriesPage : ContentPage
     {
+        private CategoriesViewModel viewModel;
+
         public CategoriesPage()
         {
             InitializeComponent();
-            BindingContext = SimpleIoc.Default.GetInstance<CategoriesViewModel>();
+            BindingContext = viewModel = SimpleIoc.Default.GetInstance<CategoriesViewModel>();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await viewModel.RefreshAsync();
         }
     }
 }

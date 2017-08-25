@@ -3,6 +3,9 @@ using GalaSoft.MvvmLight;
 using PhotoSharingApp.Frontend.Portable.Services;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using MvvmHelpers;
+using PhotoSharingApp.Frontend.Portable.Models;
+using System.Collections.ObjectModel;
 
 namespace PhotoSharingApp.Frontend.Portable.ViewModels
 {
@@ -17,6 +20,13 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
             set { isRefreshing = value; RaisePropertyChanged(); }
         }
 
+        private ObservableCollection<Photo> heroImages;
+        public ObservableCollection<Photo> HeroImages
+        {
+            get { return heroImages; }
+            set { heroImages = value; RaisePropertyChanged(); }
+        }
+
         private RelayCommand refreshCommand;
         public RelayCommand RefreshCommand
         {
@@ -26,6 +36,8 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
         public CategoriesViewModel(IPhotoService photoService)
         {
             this.photoService = photoService;
+
+            heroImages = new ObservableCollection<Photo>();
         }
 
         public async Task RefreshAsync()
@@ -33,6 +45,11 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
             IsRefreshing = true;
 
             var images = await photoService.GetHeroImages(10);
+            foreach (var img in images)
+            {
+                heroImages.Add(img);
+            }
+
 
             IsRefreshing = false;
         }

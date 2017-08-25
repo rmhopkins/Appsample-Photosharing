@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhotoSharingApp.Forms.CategoriesPage"
+    xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
     Title="Home">
 
     <!-- Icon -->
@@ -18,24 +19,38 @@
             RefreshCommand="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsRefreshing}">
             <ListView.Header>
-                <Grid
-                    BackgroundColor="{StaticResource SubtleColor}"
-                    Padding="20">
+                <Grid HeightRequest="250">
 
-
+                    <cv:CarouselView ItemsSource="{Binding HeroImages}">
+                        <cv:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}"/>
+                                    <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                                        <Label TextColor="White" Text="Test" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </cv:CarouselView.ItemTemplate>
+                    </cv:CarouselView>
                 </Grid>
             </ListView.Header>
 
             <ListView.Footer>
-                <Grid
-                    BackgroundColor="{StaticResource SubtleColor}"
+                <Grid                    
                     Padding="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     
-                    <Frame                    
+                    <Frame          
+                        BackgroundColor="{StaticResource SubtleColor}"
                         HasShadow="false"
                         CornerRadius="0">
                         <Grid>
@@ -60,6 +75,7 @@
 
                     <Frame  
                         Grid.Row="1"
+                        BackgroundColor="{StaticResource SubtleColor}"
                         HasShadow="false"
                         CornerRadius="0"
                         Margin="0,20,0,0">
