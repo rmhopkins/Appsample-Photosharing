@@ -22,27 +22,20 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System.Threading.Tasks;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Services
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// This handler enforces that the user is successfully authenticated.
     /// </summary>
-    public static class CategoryExtensions
+    public interface IAuthEnforcementHandler
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Requires a user to be signed in successfully.
+        /// If not signed in already, the user will be prompted to do so.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        /// <exception cref="SignInRequiredException">When sign-in was not successful.</exception>
+        Task CheckUserAuthentication();
     }
 }

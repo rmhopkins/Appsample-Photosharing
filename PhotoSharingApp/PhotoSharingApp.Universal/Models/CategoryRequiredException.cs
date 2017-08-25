@@ -22,27 +22,26 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The exception that is thrown when a category is required,
+    /// but the user has not selected any.
     /// </summary>
-    public static class CategoryExtensions
+    public class CategoryRequiredException : Exception
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public CategoryRequiredException()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+        }
+
+        public CategoryRequiredException(string message) : base(message)
+        {
+        }
+
+        public CategoryRequiredException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }

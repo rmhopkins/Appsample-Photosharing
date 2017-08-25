@@ -23,26 +23,44 @@
 //  ---------------------------------------------------------------------------------
 
 using PhotoSharingApp.Universal.Models;
+using PhotoSharingApp.Universal.Services;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// ViewModel for the PageHeader UI component.
     /// </summary>
-    public static class CategoryExtensions
+    public class PageHeaderViewModel : ViewModelBase
     {
+        private User _currentUser;
+
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// The constructor.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public PageHeaderViewModel(IPhotoService photoService)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            // Get current user as UI will bind directly to it.
+            CurrentUser = AppEnvironment.Instance.CurrentUser;
+
+            IsDummyServiceEnabled = photoService is PhotoDummyService;
         }
+
+        /// <summary>
+        /// Gets or sets the current user.
+        /// </summary>
+        public User CurrentUser
+        {
+            get { return _currentUser; }
+            set
+            {
+                if (value != _currentUser)
+                {
+                    _currentUser = value;
+                    NotifyPropertyChanged(nameof(CurrentUser));
+                }
+            }
+        }
+
+        public bool IsDummyServiceEnabled { get; set; }
     }
 }

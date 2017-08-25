@@ -24,25 +24,32 @@
 
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The navigation arguments for the <see cref="CameraViewModel" />.
     /// </summary>
-    public static class CategoryExtensions
+    public class CameraViewModelArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="category">The target category for the photo.</param>
+        public CameraViewModelArgs(CategoryPreview category)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            Category = category;
         }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        public CameraViewModelArgs()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the target category.
+        /// </summary>
+        public CategoryPreview Category { get; set; }
     }
 }

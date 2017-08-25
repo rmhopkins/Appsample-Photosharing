@@ -22,27 +22,41 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
+using System.Threading.Tasks;
+using PhotoSharingApp.Universal.Facades;
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The default handler that is being activated when a photo upload
+    /// has been finished successfully.
     /// </summary>
-    public static class CategoryExtensions
+    public class DefaultUploadFinishedHandler : IUploadFinishedHandler
     {
+        private readonly INavigationFacade _navigationFacade;
+
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// The constructor
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="navigationFacade">The navigation facade.</param>
+        public DefaultUploadFinishedHandler(INavigationFacade navigationFacade)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            _navigationFacade = navigationFacade;
+        }
+
+        /// <summary>
+        /// Called when a photo has been uploaded successfully.
+        /// </summary>
+        /// <param name="category">The associated category.</param>
+        public Task OnUploadFinished(Category category)
+        {
+            _navigationFacade.NavigateToPhotoStream(category);
+
+            // Remove the frames related to uploading the photo for back button navigation
+            _navigationFacade.RemoveUploadPhotoFramesFromBackStack(category.Id);
+
+            return Task.CompletedTask;
         }
     }
 }

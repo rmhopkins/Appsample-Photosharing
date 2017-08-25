@@ -22,27 +22,65 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using PhotoSharingApp.Universal.ComponentModel;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Represents the current leaderboard standings
     /// </summary>
-    public static class CategoryExtensions
+    public class LeaderboardEntry<T> : ObservableObjectBase where T : class
     {
+        private T _model;
+        private long _rank;
+        private int _value;
+
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// The model that this entry is for
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public T Model
         {
-            return new CategoryPreview
+            get { return _model; }
+            set
             {
-                Id = category.Id,
-                Name = category.Name
-            };
+                if (value != _model)
+                {
+                    _model = value;
+                    NotifyPropertyChanged(nameof(Model));
+                }
+            }
+        }
+
+        /// <summary>
+        /// The leaderboard rank for this entry
+        /// </summary>
+        public long Rank
+        {
+            get { return _rank; }
+            set
+            {
+                if (value != _rank)
+                {
+                    _rank = value;
+                    NotifyPropertyChanged(nameof(Rank));
+                }
+            }
+        }
+
+        /// <summary>
+        /// The entry value
+        /// </summary>
+        public int Value
+        {
+            get { return _value; }
+            set
+            {
+                if (_value != value)
+                {
+                    _value = value;
+                    NotifyPropertyChanged(nameof(Value));
+                }
+            }
         }
     }
 }

@@ -23,26 +23,24 @@
 //  ---------------------------------------------------------------------------------
 
 using PhotoSharingApp.Universal.Models;
+using Windows.Storage;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The navigation arguments for the <see cref="CropViewModel" />.
     /// </summary>
-    public static class CategoryExtensions
+    public class CropViewModelArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Gets or sets the target category.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        public CategoryPreview Category { get; set; }
+
+        /// <summary>
+        /// Gets or sets the storage file that needs
+        /// to be cropped.
+        /// </summary>
+        public StorageFile StorageFile { get; set; }
     }
 }

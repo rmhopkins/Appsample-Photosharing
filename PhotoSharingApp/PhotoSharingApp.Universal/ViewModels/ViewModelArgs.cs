@@ -1,5 +1,4 @@
-﻿//-----------------------------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//  Copyright (c) Microsoft Corporation.  All rights reserved.
 // 
 //  The MIT License (MIT)
 // 
@@ -22,27 +21,27 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
-
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Base class for ViewModel navigation arguments.
     /// </summary>
-    public static class CategoryExtensions
+    public class ViewModelArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Initializes the instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public ViewModelArgs()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
         }
+
+        /// <summary>
+        /// Gets or sets the value determining whether the target view
+        /// is being highlighted on the navigation bar.
+        /// <remarks>
+        /// By default, this property returns true.
+        /// </remarks>
+        /// </summary>
+        public bool HighlightOnNavigationBar { get; set; } = true;
     }
 }

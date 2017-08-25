@@ -22,27 +22,15 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
-
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Specifies if new data is being saved
+    /// or existing data updated.
     /// </summary>
-    public static class CategoryExtensions
+    public enum EditingMode
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        New,
+        Update
     }
 }

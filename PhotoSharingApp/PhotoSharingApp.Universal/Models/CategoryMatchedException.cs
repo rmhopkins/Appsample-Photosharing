@@ -22,27 +22,26 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The exception that is thrown when a matching between two
+    /// categories has been determined.
     /// </summary>
-    public static class CategoryExtensions
+    public class CategoryMatchedException : Exception
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public CategoryMatchedException()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+        }
+
+        public CategoryMatchedException(string message) : base(message)
+        {
+        }
+
+        public CategoryMatchedException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }

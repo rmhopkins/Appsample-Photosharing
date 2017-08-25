@@ -24,25 +24,35 @@
 
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The navigation arguments for the <see cref="StreamViewModel" />.
     /// </summary>
-    public static class CategoryExtensions
+    public class StreamViewModelArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="category">The category to show data for.</param>
+        public StreamViewModelArgs(CategoryPreview category)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            Category = category;
         }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <remarks>
+        /// Needed for serialization.
+        /// </remarks>
+        public StreamViewModelArgs()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the category.
+        /// </summary>
+        public CategoryPreview Category { get; set; }
     }
 }

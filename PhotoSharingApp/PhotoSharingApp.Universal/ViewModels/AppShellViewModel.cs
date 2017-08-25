@@ -22,27 +22,43 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using PhotoSharingApp.Universal.NavigationBar;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The ViewModel for the AppShell.
     /// </summary>
-    public static class CategoryExtensions
+    public class AppShellViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        public AppShellViewModel()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            NavigationBarMenuItems = ServiceLocator.Current
+                .GetAllInstances<INavigationBarMenuItem>()
+                .Where(i => i.Position == NavigationBarItemPosition.Top)
+                .ToList();
+
+            BottomNavigationBarMenuItems = ServiceLocator.Current
+                .GetAllInstances<INavigationBarMenuItem>()
+                .Where(i => i.Position == NavigationBarItemPosition.Bottom)
+                .ToList();
+
+#if DEBUG
+            BottomNavigationBarMenuItems.Add(new DebugNavigationBarMenuItem());
+#endif
         }
+
+        /// <summary>
+        /// The navigation bar items at the bottom.
+        /// </summary>
+        public List<INavigationBarMenuItem> BottomNavigationBarMenuItems { get; }
+
+        /// <summary>
+        /// The navigation bar items at the top.
+        /// </summary>
+        public List<INavigationBarMenuItem> NavigationBarMenuItems { get; private set; }
     }
 }

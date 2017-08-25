@@ -22,27 +22,50 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Represents an instructional item that can be displayed in the welcome screen
+    /// experience for new users.
     /// </summary>
-    public static class CategoryExtensions
+    public class InstructionItem
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="headerText">The header text.</param>
+        /// <param name="contentText">The content text.</param>
+        /// <param name="image">The image Uri.</param>
+        /// <param name="targetPage">The target page type.</param>
+        public InstructionItem(string headerText, string contentText,
+            Uri image, Type targetPage = null)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            HeaderText = headerText;
+            ContentText = contentText;
+            Image = image;
+            TargetPage = targetPage;
         }
+
+        /// <summary>
+        /// Gets or sets the content text.
+        /// </summary>
+        public string ContentText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the header text.
+        /// </summary>
+        public string HeaderText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the image.
+        /// </summary>
+        public Uri Image { get; set; }
+
+        /// <summary>
+        /// Gets or sets the optional target page.
+        /// </summary>
+        public Type TargetPage { get; set; }
     }
 }

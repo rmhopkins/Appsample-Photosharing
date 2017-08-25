@@ -22,27 +22,36 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using PhotoSharingApp.Universal.Commands;
+using PhotoSharingApp.Universal.Facades;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The ViewModel for the sign-in prompt view.
     /// </summary>
-    public static class CategoryExtensions
+    public class SignInPromptViewModel : ViewModelBase
     {
+        private readonly INavigationFacade _navigationFacade;
+
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="navigationFacade">The navigation facade.</param>
+        public SignInPromptViewModel(INavigationFacade navigationFacade)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            _navigationFacade = navigationFacade;
+            SignInCommand = new RelayCommand(OnSignIn);
+        }
+
+        /// <summary>
+        /// Gets the sign-in command.
+        /// </summary>
+        public RelayCommand SignInCommand { get; }
+
+        private void OnSignIn()
+        {
+            _navigationFacade.NavigateToSignInView();
         }
     }
 }

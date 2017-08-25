@@ -22,27 +22,43 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Services
 {
-    /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
-    /// </summary>
-    public static class CategoryExtensions
+    public interface IAuthenticationHandler
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Gets the preferred authentication providers for this app.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        /// <value>
+        /// The authentication providers.
+        /// </value>
+        List<MobileServiceAuthenticationProvider> AuthenticationProviders { get; }
+
+        /// <summary>
+        /// Starts the authentication process.
+        /// </summary>
+        /// <param name="provider">The provider to authenticate with.</param>
+        Task AuthenticateAsync(MobileServiceAuthenticationProvider provider);
+
+        /// <summary>
+        /// Logs the user out.
+        /// </summary>
+        Task LogoutAsync();
+
+        /// <summary>
+        /// Clears the password vault.
+        /// </summary>
+        void ResetPasswordVault();
+
+        /// <summary>
+        /// Restores the sign in status.
+        /// </summary>
+        /// <returns>True, if successful. Otherwise, false.</returns>
+        Task<User> RestoreSignInStatus();
     }
 }

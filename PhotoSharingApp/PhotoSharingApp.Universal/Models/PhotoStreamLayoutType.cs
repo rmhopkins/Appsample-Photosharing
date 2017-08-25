@@ -22,27 +22,15 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
-
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Specifies the layout type of the
+    /// photo stream.
     /// </summary>
-    public static class CategoryExtensions
+    public enum PhotoStreamLayoutType
     {
-        /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        Grid,
+        List
     }
 }

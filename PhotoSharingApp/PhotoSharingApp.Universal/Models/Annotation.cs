@@ -1,8 +1,8 @@
 ﻿//-----------------------------------------------------------------------------------
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
-// 
+//
 //  The MIT License (MIT)
-// 
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -22,27 +22,47 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using PhotoSharingApp.Universal.Models;
+using System;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.Models
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// Represents an annotation for a photo.
     /// </summary>
-    public static class CategoryExtensions
+    public class Annotation
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Gets or sets the date and time when the
+        /// notification was created.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
-        {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-        }
+        public DateTime CreatedTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user who is the originator
+        /// or the annotion.
+        /// </summary>
+        public User From { get; set; }
+
+        /// <summary>
+        /// Gets or sets the gold count which represents how
+        /// much gold the annotation's originator gives to
+        /// the photo.
+        /// </summary>
+        public int GoldCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Photo Id.
+        /// </summary>
+        public string PhotoId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the comment.
+        /// </summary>
+        public string Text { get; set; }
     }
 }

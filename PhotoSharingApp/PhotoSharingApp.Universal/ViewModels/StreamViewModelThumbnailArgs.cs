@@ -24,25 +24,43 @@
 
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The navigation arguments for the <see cref="StreamViewModel" />.
     /// </summary>
-    public static class CategoryExtensions
+    public class StreamViewModelThumbnailArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Creates a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <remarks>
+        /// Needed for serialization.
+        /// </remarks>
+        public StreamViewModelThumbnailArgs()
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
         }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="category">The category to show data for.</param>
+        /// <param name="photoThumbnail">The photo thumbnail that is used for
+        /// determining the scroll position of the photo stream.</param>
+        public StreamViewModelThumbnailArgs(CategoryPreview category, PhotoThumbnail photoThumbnail)
+        {
+            Category = category;
+            PhotoThumbnail = photoThumbnail;
+        }
+
+        /// <summary>
+        /// Gets or sets the category.
+        /// </summary>
+        public CategoryPreview Category { get; set; }
+
+        /// <summary>
+        /// Gets or sets photo thumbnail.
+        /// </summary>
+        public PhotoThumbnail PhotoThumbnail { get; set; }
     }
 }

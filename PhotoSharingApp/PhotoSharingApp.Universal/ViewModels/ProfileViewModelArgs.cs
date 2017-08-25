@@ -1,5 +1,4 @@
-﻿//-----------------------------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//  Copyright (c) Microsoft Corporation.  All rights reserved.
 // 
 //  The MIT License (MIT)
 // 
@@ -24,25 +23,33 @@
 
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The navigation arguments for the profile view.
     /// </summary>
-    public static class CategoryExtensions
+    public class ProfileViewModelArgs : ViewModelArgs
     {
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// Initializes a new instance.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="user">The user to display.</param>
+        public ProfileViewModelArgs(User user)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            User = user;
+            HighlightOnNavigationBar = false;
         }
+
+        /// <summary>
+        /// Initializes a new instance.
+        /// </summary>
+        public ProfileViewModelArgs()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        public User User { get; set; }
     }
 }

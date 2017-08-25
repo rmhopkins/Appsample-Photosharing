@@ -22,27 +22,39 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
+using System;
+using System.Threading.Tasks;
 using PhotoSharingApp.Universal.Models;
 
-namespace PhotoSharingApp.Universal.Extensions
+namespace PhotoSharingApp.Universal.ViewModels
 {
     /// <summary>
-    /// Provides extension methods for the <see cref="Category" /> class.
+    /// The handler that is being actived when a photo upload
+    /// has been finished successfully when the app is in the
+    /// share target mode.
     /// </summary>
-    public static class CategoryExtensions
+    public class ShareTargetUploadFinishedHandler : IUploadFinishedHandler
     {
+        private readonly Action _uploadFinishedAction;
+
         /// <summary>
-        /// Converts from <see cref="Category" /> to <see cref="CategoryPreview" />.
+        /// The constructor.
         /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The category preview object.</returns>
-        public static CategoryPreview ToCategoryPreview(this Category category)
+        /// <param name="uploadFinishedAction">The action to execute on successful upload.</param>
+        public ShareTargetUploadFinishedHandler(Action uploadFinishedAction)
         {
-            return new CategoryPreview
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
+            _uploadFinishedAction = uploadFinishedAction;
+        }
+
+        /// <summary>
+        /// Called when a photo has been uploaded successfully.
+        /// </summary>
+        /// <param name="category">The associated category.</param>
+        public Task OnUploadFinished(Category category)
+        {
+            _uploadFinishedAction.Invoke();
+
+            return Task.CompletedTask;
         }
     }
 }
