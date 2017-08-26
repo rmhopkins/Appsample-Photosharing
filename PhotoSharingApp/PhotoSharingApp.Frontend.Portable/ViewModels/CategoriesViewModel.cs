@@ -44,12 +44,12 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
         {
             IsRefreshing = true;
 
-            var images = await photoService.GetHeroImages(10);
+            heroImages.Clear();
+            var images = await photoService.GetHeroImages(5);
             foreach (var img in images)
             {
                 heroImages.Add(img);
             }
-
 
             IsRefreshing = false;
         }

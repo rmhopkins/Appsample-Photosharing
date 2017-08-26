@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhotoSharingApp.Forms.CategoriesPage"
     xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+    xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
     Title="Home">
 
     <!-- Icon -->
@@ -29,10 +30,30 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Hero Image -->
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Grid.ColumnSpan="2"
+                                        Aspect="AspectFill"
+                                        Source="{Binding ImageUrl}"/>
+
+                                    <!-- Details -->
+                                    <ic:CircleImage
+                                        Margin="20,0,0,20"
+                                        Grid.Row="1"
+                                        Aspect="AspectFill"
+                                        Source="{Binding User.ProfilePictureUrl}"
+                                        WidthRequest="80"
+                                        HeightRequest="80"/>
                                     
-                                    <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}"/>
-                                    <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
-                                        <Label TextColor="White" Text="Test" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                    <StackLayout Grid.Row="1" Grid.Column="1" Padding="12" VerticalOptions="Center">
+                                        <Label TextColor="White" Text="{Binding CreatedAt}" FontSize="10" />
+                                        <Label TextColor="White" Text="{Binding Caption}" FontSize="16" />
                                     </StackLayout>
                                 </Grid>
                             </DataTemplate>

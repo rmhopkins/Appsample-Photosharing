@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace PhotoSharingApp.Forms.iOS
@@ -12,7 +13,10 @@ namespace PhotoSharingApp.Forms.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(250, 168, 25);
+
             global::Xamarin.Forms.Forms.Init();
+            ImageCircleRenderer.Init();
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG
@@ -21,7 +25,8 @@ namespace PhotoSharingApp.Forms.iOS
 
             LoadApplication(new App());
 
-            return base.FinishedLaunching(app, options);
+            var result = base.FinishedLaunching(app, options);
+            return result;
         }
     }
 }
