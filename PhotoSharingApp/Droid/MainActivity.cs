@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
+using FFImageLoading.Forms.Droid;
 
 namespace PhotoSharingApp.Forms.Droid
 {
@@ -23,6 +24,7 @@ namespace PhotoSharingApp.Forms.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ImageCircleRenderer.Init();
+            CachedImageRenderer.Init();
 
             LoadApplication(new App());
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
@@ -17,6 +17,7 @@ namespace PhotoSharingApp.Forms.iOS
 
             global::Xamarin.Forms.Forms.Init();
             ImageCircleRenderer.Init();
+            CachedImageRenderer.Init();
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG

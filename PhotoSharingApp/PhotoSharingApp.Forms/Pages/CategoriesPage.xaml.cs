@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using FFImageLoading.Transformations;
 using GalaSoft.MvvmLight.Ioc;
 using PhotoSharingApp.Frontend.Portable.ViewModels;
 using Xamarin.Forms;
+using PhotoSharingApp.Frontend.Portable.Models;
 
 namespace PhotoSharingApp.Forms
 {
@@ -20,6 +22,13 @@ namespace PhotoSharingApp.Forms
         {
             base.OnAppearing();
             await viewModel.RefreshAsync();
+        }
+
+        void Handle_FlowItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+            var selectedItem = e.Item as PhotoThumbnail;
+            if (selectedItem != null)
+                viewModel.ShowCategoryStreamCommand.Execute(selectedItem);
         }
     }
 }

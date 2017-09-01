@@ -49,6 +49,12 @@
     <Compile Include="Models\DeviceFamily.cs" />
     <Compile Include="Models\IAppEnvironment.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
+    <Compile Include="ViewModels\AsyncViewModelBase.cs" />
+    <Compile Include="Helpers\ViewNames.cs" />
+    <Compile Include="ViewModels\PhotoDetailsViewModel.cs" />
+    <Compile Include="ViewModels\StreamPageViewModel.cs" />
+    <Compile Include="Helpers\GroupedRangeCollection.cs" />
+    <Compile Include="Models\GroupedCategoryPreview.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -56,6 +62,7 @@
     <Folder Include="ComponentModel\" />
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

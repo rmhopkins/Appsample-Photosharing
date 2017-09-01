@@ -5,6 +5,10 @@
     x:Class="PhotoSharingApp.Forms.CategoriesPage"
     xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
     xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:flow="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+    x:Name="CategoriesPage"
     Title="Home">
 
     <!-- Icon -->
@@ -15,17 +19,47 @@
     </ContentPage.Icon>
 
 	<ContentPage.Content>
-        <ListView
+        <flow:FlowListView
+            FlowColumnCount="5"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
+            FlowUseAbsoluteLayoutInternally="false"
+            FlowColumnExpand="None"
+            IsGroupingEnabled="true"
             IsPullToRefreshEnabled="true"
-            RefreshCommand="{Binding RefreshCommand}"
-            IsRefreshing="{Binding IsRefreshing}">
-            <ListView.Header>
-                <Grid HeightRequest="250">
+            FlowItemTapped="Handle_FlowItemTapped"
+            ItemsSource="{Binding TopCategories}"
+            IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+            FlowGroupDisplayBinding="{Binding Name}"
+            FlowItemsSource="{Binding TopCategories}">
 
+            <!-- Item Template for Category Preview Image -->
+            <flow:FlowListView.FlowColumnTemplate>
+                <DataTemplate>                   
+                    <Grid>
+                        <ffimageloading:CachedImage                                
+                            Source="{Binding ImageUrl}"
+                            FadeAnimationEnabled="true"
+                            CacheType="Disk"
+                            Aspect="AspectFill"
+                            HorizontalOptions="StartAndExpand" />
+                    </Grid>                
+                </DataTemplate>
+            </flow:FlowListView.FlowColumnTemplate>
+
+            <!-- List View Header -->
+            <flow:FlowListView.Header>
+                <Grid HeightRequest="250">
                     <cv:CarouselView ItemsSource="{Binding HeroImages}">
                         <cv:CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.ShowPhotoDetailsCommand, Source={x:Reference Name=CategoriesPage}}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                    
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
@@ -36,20 +70,26 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Hero Image -->
-                                    <Image
+                                    <ffimageloading:CachedImage
                                         Grid.RowSpan="2"
                                         Grid.ColumnSpan="2"
                                         Aspect="AspectFill"
+                                        FadeAnimationEnabled="true"
+                                        CacheType="Disk"
                                         Source="{Binding ImageUrl}"/>
 
                                     <!-- Details -->
-                                    <ic:CircleImage
+                                    <ffimageloading:CachedImage
                                         Margin="20,0,0,20"
                                         Grid.Row="1"
                                         Aspect="AspectFill"
                                         Source="{Binding User.ProfilePictureUrl}"
                                         WidthRequest="80"
-                                        HeightRequest="80"/>
+                                        HeightRequest="80">
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:CircleTransformation/>
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>
                                     
                                     <StackLayout Grid.Row="1" Grid.Column="1" Padding="12" VerticalOptions="Center">
                                         <Label TextColor="White" Text="{Binding CreatedAt}" FontSize="10" />
@@ -60,9 +100,10 @@
                         </cv:CarouselView.ItemTemplate>
                     </cv:CarouselView>
                 </Grid>
-            </ListView.Header>
+            </flow:FlowListView.Header>
 
-            <ListView.Footer>
+            <!-- ListView Footer -->
+            <flow:FlowListView.Footer>
                 <Grid                    
                     Padding="20">
                     <Grid.RowDefinitions>
@@ -124,7 +165,7 @@
                         </Grid>
                     </Frame>
                 </Grid>
-            </ListView.Footer>
-        </ListView>
+            </flow:FlowListView.Footer>
+        </flow:FlowListView>
 	</ContentPage.Content>
 </ContentPage>

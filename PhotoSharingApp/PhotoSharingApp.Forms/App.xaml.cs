@@ -1,5 +1,8 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using DLToolkit.Forms.Controls;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using PhotoSharingApp.Frontend.Portable;
 using PhotoSharingApp.Frontend.Portable.Models;
 using PhotoSharingApp.Frontend.Portable.Services;
 using PhotoSharingApp.Frontend.Portable.ViewModels;
@@ -12,24 +15,30 @@ namespace PhotoSharingApp.Forms
         public App()
         {
             InitializeComponent();
+            FlowListView.Init();
 
             // Setup IoC Container for Dependeny Injection
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Reset();
 
-            var test = new PhotoDummyService();
-
             // Register Dependencies
-
             SimpleIoc.Default.Register<IAppEnvironment, AppEnvironment>();
-
             SimpleIoc.Default.Register<IPhotoService, PhotoDummyService>();
+
             SimpleIoc.Default.Register<CategoriesViewModel>();
+            SimpleIoc.Default.Register<PhotoDetailsViewModel>();
+            SimpleIoc.Default.Register<StreamPageViewModel>();
 
             // Setup App Container
             var navigationPage = new NavigationPage();
             navigationPage.BarBackgroundColor = (Color)Resources["AccentColor"];
             navigationPage.BarTextColor = Color.Black;
+
+            // Register Navigation Service
+            var navigationService = new FormsNavigationService(navigationPage);
+            navigationService.Configure(ViewNames.PhotoDetailsPage, typeof(PhotoDetailsPage));
+            navigationService.Configure(ViewNames.StreamPage, typeof(StreamPage));
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
             var appShell = new AppShell();
             appShell.Children.Add(new CategoriesPage());   // Home
