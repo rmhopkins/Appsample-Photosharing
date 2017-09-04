@@ -7,7 +7,9 @@ using PhotoSharingApp.Frontend.Portable.Models;
 using PhotoSharingApp.Frontend.Portable.Services;
 using PhotoSharingApp.Frontend.Portable.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PhotoSharingApp.Forms
 {
     public partial class App : Application

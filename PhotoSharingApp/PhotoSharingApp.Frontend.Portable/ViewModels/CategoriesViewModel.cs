@@ -94,6 +94,7 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
 
             IsRefreshing = true;
 
+
             // Load hero images
             heroImages.Clear();
             var images = await photoService.GetHeroImages(5);

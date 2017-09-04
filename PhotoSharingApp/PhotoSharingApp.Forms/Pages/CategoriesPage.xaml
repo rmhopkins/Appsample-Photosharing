@@ -30,6 +30,7 @@
             FlowItemTapped="Handle_FlowItemTapped"
             ItemsSource="{Binding TopCategories}"
             IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+            RefreshCommand="{Binding RefreshCommand}"
             FlowGroupDisplayBinding="{Binding Name}"
             FlowItemsSource="{Binding TopCategories}">
 
