@@ -3,6 +3,8 @@ category: AudioVideoAndCamera ControlsLayoutAndText Data FilesFoldersAndLibrarie
 -->
 > Please use the XAMARIN branch
 
+iOS [![Build status](https://build.mobile.azure.com/v0.1/apps/0da4e6cf-5853-4c6c-bd8d-0760b6330a0b/branches/xamarin/badge)](https://mobile.azure.com)
+
 # Appsample-Photosharing
 
 **PhotoSharingApp** is a Universal Windows Platform (UWP) app sample that demonstrates real-world social media experiences around photo sharing.
