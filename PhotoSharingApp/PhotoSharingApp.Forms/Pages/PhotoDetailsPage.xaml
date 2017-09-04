@@ -47,6 +47,10 @@
                             BorderColor="White"
                             BorderThickness="5" />
                     </Grid>
+
+                    <StackLayout>
+                        <Label Text="" />
+                    </StackLayout>
                 </Grid>
             </ListView.Header>
 

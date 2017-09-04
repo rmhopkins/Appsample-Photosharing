@@ -2,8 +2,31 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     x:Class="PhotoSharingApp.Forms.StreamPage"
     Title="{Binding Title}">
+    
 	<ContentPage.Content>
+        <ListView
+            ItemsSource="{Binding Photos}"
+            HasUnevenRows="true"
+            SeparatorVisibility="None"
+            ItemSelected="Handle_ItemSelected">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <ffimageloading:CachedImage                                
+                                Source="{Binding StandardUrl}"
+                                FadeAnimationEnabled="false"
+                                Aspect="AspectFill"
+                                 />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
 	</ContentPage.Content>
 </ContentPage>

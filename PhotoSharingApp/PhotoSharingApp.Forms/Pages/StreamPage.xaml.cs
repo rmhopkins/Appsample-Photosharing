@@ -21,5 +21,17 @@ namespace PhotoSharingApp.Forms
             viewModel.Init(categoryPreview);
             BindingContext = viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await viewModel.RefreshAsync();
+        }
+
+        void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem is Photo item)
+                viewModel.ShowPhotoDetailsCommand.Execute(item);
+        }
     }
 }

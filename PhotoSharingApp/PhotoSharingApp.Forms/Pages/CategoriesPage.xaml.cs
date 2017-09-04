@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FFImageLoading.Transformations;
 using GalaSoft.MvvmLight.Ioc;
 using PhotoSharingApp.Frontend.Portable.ViewModels;
 using Xamarin.Forms;
