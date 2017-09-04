@@ -13,5 +13,42 @@
     </ContentPage.Icon>
     
 	<ContentPage.Content>
+         <Grid
+            RowSpacing="0"
+            ColumnSpacing="0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="#EEEEEE">
+
+                <Image
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Source="camera.png"
+                    Aspect="AspectFit"/>
+                
+                <Image
+                    x:Name="PreviewImage"
+                    Aspect="AspectFit"/>
+            </Grid>
+
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Horizontal"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Spacing="20"
+                Padding="20">
+                
+                <Button Text="Library" Clicked="Handle_Clicked" />
+                <Button Text="Picuture" />
+                <Button Text="Upload" />
+            </StackLayout>
+        </Grid>
 	</ContentPage.Content>
 </ContentPage>

@@ -80,11 +80,11 @@ namespace PhotoSharingApp.Frontend.Portable.ViewModels
             topCategories = new ObservableRangeCollection<GroupedCategoryPreview>();
 
             // Design Data
-            topCategories.Add(new GroupedCategoryPreview(new List<PhotoThumbnail>
-            {
-                new PhotoThumbnail { ImageUrl = "http://i0.wp.com/www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg?ssl=1" },
-                new PhotoThumbnail { ImageUrl = "http://i0.wp.com/www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg?ssl=1" }
-            }, "Test", "T", null));
+            //topCategories.Add(new GroupedCategoryPreview(new List<PhotoThumbnail>
+            //{
+            //    new PhotoThumbnail { ImageUrl = "http://i0.wp.com/www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg?ssl=1" },
+            //    new PhotoThumbnail { ImageUrl = "http://i0.wp.com/www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg?ssl=1" }
+            //}, "Test", "T", null));
         }
 
         public async Task RefreshAsync(bool force = false)

@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
 using FFImageLoading.Forms.Droid;
+using Plugin.Permissions;
 
 namespace PhotoSharingApp.Forms.Droid
 {
@@ -27,6 +28,11 @@ namespace PhotoSharingApp.Forms.Droid
             CachedImageRenderer.Init();
 
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

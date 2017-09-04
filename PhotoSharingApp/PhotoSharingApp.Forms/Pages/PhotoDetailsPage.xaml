@@ -48,12 +48,18 @@
                             BorderThickness="5" />
                     </Grid>
 
-                    <StackLayout>
-                        <Label Text="" />
+                    <StackLayout Grid.Row="2" Padding="20">
+                        <Label Text="{Binding Photo.Caption}" FontAttributes="Bold" />
+                        <Label Text="{Binding Photo.CreatedAt}" />
                     </StackLayout>
                 </Grid>
             </ListView.Header>
 
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding GoldCount}" Detail="{Binding Text}" />
+                </DataTemplate>                    
+            </ListView.ItemTemplate>
         </ListView>
 	</ContentPage.Content>
 </ContentPage>

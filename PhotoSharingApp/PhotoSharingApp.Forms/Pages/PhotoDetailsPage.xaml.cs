@@ -12,6 +12,11 @@ namespace PhotoSharingApp.Forms
     {
         private PhotoDetailsViewModel viewModel;
 
+        public PhotoDetailsPage()
+        {
+            InitializeComponent();
+        }
+
         public PhotoDetailsPage(Photo photo)
         {
             InitializeComponent();
@@ -20,6 +25,12 @@ namespace PhotoSharingApp.Forms
             viewModel = SimpleIoc.Default.GetInstance<PhotoDetailsViewModel>();
             viewModel.Photo = photo;
             BindingContext = viewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await viewModel.RefreshAsync();
         }
     }
 }
